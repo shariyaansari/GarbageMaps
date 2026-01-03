@@ -1,16 +1,32 @@
-# React + Vite
+# Mumbra Cleanliness Tracker (Prototype) 🗺️🚮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An area-based geospatial monitoring tool designed to visualize hygiene and waste management levels in Mumbra, Maharashtra.
 
-Currently, two official plugins are available:
+## Key Features
+- **Geofenced Experience:** The map is strictly locked to Mumbra boundaries using `maxBounds`.
+- **Area-Based (Choropleth) Mapping:** Unlike point-markers, this tool uses colored polygons to represent neighborhood cleanliness.
+- **Weighted Scoring Algorithm:** Scores are calculated based on multiple environmental factors.
+- **Interactive Dashboard:** Includes a search-to-fly feature and a real-time analytics sidebar.
+- **Data Export:** Generate instant CSV reports for city officials.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## The Mathematics
+The Cleanliness Index ($CI$) is calculated using a **Weighted Linear Combination (WLC)**:
 
-## React Compiler
+$$CI = (L \cdot 0.2) + (O \cdot 0.4) + (S \cdot 0.3) + (C \cdot 0.1)$$
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Where:
+- $L$: Visual Litter (20% weight)
+- $O$: Bin Overflow (40% weight)
+- $S$: Biological Odor/Stagnancy (30% weight)
+- $C$: Active Complaints (10% weight)
 
-## Expanding the ESLint configuration
+**Color Mapping:**
+- 🟢 **Healthy:** Score 0.0 - 4.0
+- 🟡 **Warning:** Score 4.1 - 7.0
+- 🔴 **Critical:** Score 7.1 - 10.0
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **Frontend:** React.js (Vite)
+- **Mapping Engine:** Leaflet & React-Leaflet
+- **Styling:** CSS3 & Tailwind CSS
+- **Data Format:** GeoJSON

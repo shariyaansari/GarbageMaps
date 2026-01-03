@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Mumbra Station West", "litter": 9, "overflow": 10, "smell": 8, "complaints": 9 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.014, 19.188], [73.022, 19.188], [73.022, 19.178], [73.014, 19.178], [73.014, 19.188]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kausa North", "litter": 4, "overflow": 3, "smell": 2, "complaints": 10 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.023, 19.182], [73.035, 19.182], [73.035, 19.172], [73.023, 19.172], [73.023, 19.182]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Amrut Nagar", "litter": 6, "overflow": 5, "smell": 4, "complaints": 6 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.020, 19.175], [73.028, 19.175], [73.028, 19.168], [73.020, 19.168], [73.020, 19.175]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tanwar Nagar", "litter": 2, "overflow": 2, "smell": 1, "complaints": 3 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.030, 19.175], [73.038, 19.175], [73.038, 19.165], [73.030, 19.165], [73.030, 19.175]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "M.M. Valley", "litter": 1, "overflow": 1, "smell": 1, "complaints": 1 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.038, 19.178], [73.048, 19.178], [73.048, 19.168], [73.038, 19.168], [73.038, 19.178]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Sanjay Nagar", "litter": 8, "overflow": 7, "smell": 9, "complaints": 6 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.010, 19.182], [73.018, 19.182], [73.018, 19.172], [73.010, 19.172], [73.010, 19.182]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Dosti Planet North", "litter": 3, "overflow": 4, "smell": 2, "complaints": 2 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.018, 19.195], [73.028, 19.195], [73.028, 19.188], [73.018, 19.188], [73.018, 19.195]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Reti Bunder Road", "litter": 7, "overflow": 8, "smell": 6, "complaints": 5 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.025, 19.195], [73.035, 19.195], [73.035, 19.185], [73.025, 19.185], [73.025, 19.195]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Almas Colony", "litter": 5, "overflow": 6, "smell": 4, "complaints": 3 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.028, 19.188], [73.038, 19.188], [73.038, 19.182], [73.028, 19.182], [73.028, 19.188]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Shil Phata Junction", "litter": 8, "overflow": 9, "smell": 5, "complaints": 7 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.045, 19.165], [73.055, 19.165], [73.055, 19.155], [73.045, 19.155], [73.045, 19.165]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kausa Talao Area", "litter": 2, "overflow": 1, "smell": 2, "complaints": 1 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.035, 19.185], [73.045, 19.185], [73.045, 19.178], [73.035, 19.178], [73.035, 19.185]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Mumbra Bypass South", "litter": 6, "overflow": 4, "smell": 7, "complaints": 3 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.010, 19.172], [73.020, 19.172], [73.020, 19.162], [73.010, 19.162], [73.010, 19.172]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Diva Border Pocket", "litter": 7, "overflow": 8, "smell": 8, "complaints": 6 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.048, 19.188], [73.058, 19.188], [73.058, 19.178], [73.048, 19.178], [73.048, 19.188]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Station East (Market)", "litter": 10, "overflow": 9, "smell": 9, "complaints": 10 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[73.022, 19.188], [73.026, 19.188], [73.026, 19.178], [73.022, 19.178], [73.022, 19.188]]]
+      }
+    }
+  ]
+}

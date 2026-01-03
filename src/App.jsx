@@ -1,206 +1,64 @@
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  useMapEvents,
-  Circle,
-} from "react-leaflet";
-import { useState } from "react";
-
-function ClickHandler({ setLocation }) {
-  useMapEvents({
-    click(e) {
-      setLocation(e.latlng);
-    },
-  });
-  return null;
-}
-
-function saveReport(report) {
-  const existing = JSON.parse(localStorage.getItem("reports")) || [];
-  existing.push(report);
-  localStorage.setItem("reports", JSON.stringify(existing));
-}
-
-function getReports() {
-  return JSON.parse(localStorage.getItem("reports")) || [];
-}
-
-function getColorBySeverity(severity) {
-  if (severity === "Low") return "green";
-  if (severity === "Medium") return "orange";
-  return "red";
-}
+import React, { useState } from "react";
+import MumbraMap from "./components/MumbraMap";
+import Sidebar from "./components/Sidebar";
+import sectorsData from "./data/sectors.json";
 
 function App() {
-  const [location, setLocation] = useState(null);
-  const [garbageType, setGarbageType] = useState("");
-  const [severity, setSeverity] = useState("Low");
-  const reports = getReports();
-
-  const handleLiveLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation not supported");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      },
-      () => {
-        alert("Location permission denied");
-      }
-    );
-  };
-
-  const handleSubmit = () => {
-    const report = {
-      latitude: location.lat,
-      longitude: location.lng,
-      garbageType,
-      severity,
-      timestamp: new Date().toISOString(),
-    };
-
-    saveReport(report);
-
-    alert("Garbage report saved!");
-
-    // Reset UI
-    setGarbageType("");
-    setSeverity("Low");
-    setLocation(null);
-  };
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        width: "100vw",
+        overflow: "hidden",
+        fontFamily: "sans-serif",
+        position: "relative",
+      }}
+    >
+      {/* Sidebar - Controlled by 'isOpen' */}
       <div
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "50px",
-          background: "#1e293b",
-          color: "white",
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "16px",
-          zIndex: 1000,
-          fontWeight: "bold",
+          width: isOpen ? "320px" : "0px",
+          height: "100%",
+          overflow: "hidden",
+          backgroundColor: "#f8fafc",
+          borderRight: isOpen ? "1px solid #e2e8f0" : "none",
+          transition: "width 0.3s ease-in-out", // Smooth opening/closing
         }}
       >
-        🧹 Clean Area Detection & Garbage Reporting
+        <Sidebar sectors={sectorsData} />
       </div>
-      <MapContainer
-        center={[19.076, 72.877]}
-        zoom={10}
-        style={{ height: "calc(100vh - 50px)", marginTop: "50px"  }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <ClickHandler setLocation={setLocation} />
-
-        {location && <Marker position={[location.lat, location.lng]} />}
-
-        {/* Marker on the map */}
-        {reports.map((report, index) => (
-          <Circle
-            key={index}
-            center={[report.latitude, report.longitude]}
-            radius={300}
-            pathOptions={{
-              color: getColorBySeverity(report.severity),
-              fillOpacity: 0.25,
-            }}
-          />
-        ))}
-      </MapContainer>
-
-      {location && (
-        <div
+      {/* Main Map Area */}
+      <main style={{ flex: 1, position: "relative", height: "100%" }}>
+        {/* Toggle Button - Floats on the map */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
           style={{
-            position: "fixed",
-            bottom: "20px",
+            position: "absolute",
+            top: "auto",
+            bottom: "30px",
             left: "20px",
-            background: "#ffffff",
-            padding: "16px",
-            borderRadius: "12px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-            zIndex: 1000,
-            width: "260px",
-            fontFamily: "system-ui",
+            zIndex: 1100, // Higher than map elements
+            backgroundColor: "white",
+            border: "1px solid #e2e8f0",
+            borderRadius: "8px",
+            padding: "10px 15px",
+            cursor: "pointer",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          <h3 style={{ marginBottom: "10px" }}>🗑️ Report Garbage</h3>
-
-          <input
-            type="text"
-            placeholder="Garbage type (e.g. Plastic)"
-            value={garbageType}
-            onChange={(e) => setGarbageType(e.target.value)}
-            style={{
-              width: "94%",
-              padding: "8px",
-              marginBottom: "10px",
-              borderRadius: "6px",
-              border: "1px solid #ccc",
-            }}
-          />
-
-          <select
-            value={severity}
-            onChange={(e) => setSeverity(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginBottom: "10px",
-              borderRadius: "6px",
-              border: "1px solid #ccc",
-            }}
-          >
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-          </select>
-
-          <button
-            onClick={handleLiveLocation}
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginBottom: "8px",
-              borderRadius: "6px",
-              background: "#2563eb",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            📍 Use My Location
-          </button>
-
-          <button
-            onClick={handleSubmit}
-            style={{
-              width: "100%",
-              padding: "8px",
-              borderRadius: "6px",
-              background: "#16a34a",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Submit Report
-          </button>
-        </div>
-      )}
-    </>
+          {isOpen ? "✕ Close Panel" : "☰ Open Analytics"}
+        </button>
+        <MumbraMap isOpen={isOpen} />
+      </main>
+    </div>
   );
 }
 
